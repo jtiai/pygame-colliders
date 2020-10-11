@@ -7,6 +7,11 @@ colliding system beyond standard ``Rect`` colliders in Pygame.
 Despite the name colliders aren't bound to Pygame and Pygame library is not
 prerequisite.
 
+Documentation
+-------------
+
+Documentation is located at https://pygame-colliders.readthedocs.io/
+
 Usage
 -----
 
@@ -42,8 +47,8 @@ Install pygame colliders by running:
 Contribute
 ----------
 
-- Issue Tracker: github.com/jtiai/pygame-colliders/issues
-- Source Code: github.com/jtiai/pygame-colliders
+- Issue Tracker: https://github.com/jtiai/pygame-colliders/issues
+- Source Code: https://github.com/jtiai/pygame-colliders
 
 Support
 -------
