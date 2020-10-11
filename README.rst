@@ -12,6 +12,8 @@ Usage
 
 Look how easy it is to use:
 
+.. code-block:: python
+
     from pygame_colliders import ConcaveCollider, ConvexCollider
 
     # Create colliders
