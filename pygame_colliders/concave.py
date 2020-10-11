@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Tuple
 
 from .base import Collider
 from .vector import Vector2
@@ -17,7 +17,7 @@ def is_ccw(points: List[List[float]]):
 
 def make_ear(
     shape: List[List[float]], ear: int
-) -> tuple[List[float], List[float], List[float]]:
+) -> Tuple[List[float]]:
     l = len(shape)
     return shape[(ear - 1) % l], shape[ear], shape[(ear + 1) % l]
 
@@ -68,7 +68,7 @@ class ConcaveCollider(Collider):
         collider = ConcaveCollider(collider_points)
 
     """
-    def __init__(self, points: List[tuple[float, float]]):
+    def __init__(self, points: List[Tuple[float]]):
         super().__init__()
         self.points: List[List[float]] = [[x, y] for x, y in points]  # Must be mutable
         self._vertices: List[Vector2] = []
@@ -185,14 +185,14 @@ class ConcaveCollider(Collider):
                 return True
         return False
 
-    def point_collide(self, point: tuple[float, float]):
+    def point_collide(self, point: Tuple[float]):
         """
         Check if point is within collider.
 
         .. warning:: Not implemented. Returns currently always False
 
         :param point: Point to test
-        :type point: tuple[float/int, float/int]
+        :type point: Tuple[float/int, float/int]
         :return: True if point is collider, False otherwise
         :rtype: bool
         """

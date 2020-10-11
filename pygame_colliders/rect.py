@@ -1,6 +1,4 @@
-from typing import Union
-
-from .types import PairOrIntFloat
+from typing import Union, List, Tuple
 
 
 class Rect:
@@ -18,8 +16,8 @@ class Rect:
     """
     def __init__(
         self,
-        x: PairOrIntFloat,
-        y: PairOrIntFloat,
+        x: Union[List[float], float],
+        y: Union[List[float], float],
         w: Union[None, int, float] = None,
         h: Union[None, int, float] = None,
     ):
@@ -158,7 +156,7 @@ class Rect:
         self._y = value - self._h
 
     @property
-    def topleft(self) -> tuple[float, float]:
+    def topleft(self) -> Tuple[float]:
         """
         Top left location of rect.
 
@@ -169,12 +167,12 @@ class Rect:
         return self._x, self._y
 
     @topleft.setter
-    def topleft(self, value: tuple[float, float]):
+    def topleft(self, value: Tuple[float]):
         self._x = value[0]
         self._y = value[1]
 
     @property
-    def topright(self) -> tuple[float, float]:
+    def topright(self) -> Tuple[float]:
         """
         Top right location of rect.
 
@@ -185,12 +183,12 @@ class Rect:
         return self._x + self._w, self._y
 
     @topright.setter
-    def topright(self, value: tuple[float, float]):
+    def topright(self, value: Tuple[float]):
         self._x = value[0] - self._w
         self._y = value[1]
 
     @property
-    def bottomleft(self) -> tuple[float, float]:
+    def bottomleft(self) -> Tuple[float]:
         """
         Bottom left location of rect.
 
@@ -201,12 +199,12 @@ class Rect:
         return self._x, self._y + self._h
 
     @bottomleft.setter
-    def bottomleft(self, value: tuple[float, float]):
+    def bottomleft(self, value: Tuple[float]):
         self._x = value[0]
         self._y = value[1] - self._h
 
     @property
-    def bottomright(self) -> tuple[float, float]:
+    def bottomright(self) -> Tuple[float]:
         """
         Bottom right location of rect.
 
@@ -217,7 +215,7 @@ class Rect:
         return self._x + self._w, self._y + self._h
 
     @bottomright.setter
-    def bottomright(self, value: tuple[float, float]):
+    def bottomright(self, value: Tuple[float]):
         self._x = value[0] - self._w
         self._y = value[1] - self._y
 
@@ -252,7 +250,7 @@ class Rect:
         self._y = value - self._h / 2.0
 
     @property
-    def center(self) -> tuple[float, float]:
+    def center(self) -> Tuple[float]:
         """
         Center location of rect.
 
@@ -263,12 +261,12 @@ class Rect:
         return self._x + self._w / 2.0, self._y + self._h / 2.0
 
     @center.setter
-    def center(self, value: tuple[float, float]):
+    def center(self, value: Tuple[float]):
         self._x = value[0] - self._w / 2.0
         self._y = value[1] - self._h / 2.0
 
     @property
-    def midtop(self) -> tuple[float, float]:
+    def midtop(self) -> Tuple[float]:
         """
         Mid top location of rect.
 
@@ -279,12 +277,12 @@ class Rect:
         return self._x + self._w / 2.0, self._y
 
     @midtop.setter
-    def midtop(self, value: tuple[float, float]):
+    def midtop(self, value: Tuple[float]):
         self._x = value[0] - self._w / 2.0
         self._y = value[1]
 
     @property
-    def midright(self) -> tuple[float, float]:
+    def midright(self) -> Tuple[float]:
         """
         Mid right location of rect.
 
@@ -295,12 +293,12 @@ class Rect:
         return self._x + self._w, self.y + self._h / 2.0
 
     @midright.setter
-    def midright(self, value: tuple[float, float]):
+    def midright(self, value: Tuple[float]):
         self._x = value[0] - self._w
         self._y = value[1] - self._w / 2.0
 
     @property
-    def midbottom(self) -> tuple[float, float]:
+    def midbottom(self) -> Tuple[float]:
         """
         Mid bottom location of rect.
 
@@ -311,12 +309,12 @@ class Rect:
         return self._x + self._w / 2.0, self._y + self._h
 
     @midbottom.setter
-    def midbottom(self, value: tuple[float, float]):
+    def midbottom(self, value: Tuple[float]):
         self._x = value[0] - self._w / 2.0
         self._y = value[1] - self._h
 
     @property
-    def midleft(self) -> tuple[float, float]:
+    def midleft(self) -> Tuple[float]:
         """
         Mid left location of rect.
 
@@ -327,12 +325,12 @@ class Rect:
         return self._x, self._y + self._h / 2.0
 
     @midleft.setter
-    def midleft(self, value: tuple[float, float]):
+    def midleft(self, value: Tuple[float]):
         self._x = value[0]
         self._y = value[1] - self._h / 2.0
 
     @property
-    def size(self) -> tuple[float, float]:
+    def size(self) -> Tuple[float]:
         """
         Size of rect.
 
@@ -343,7 +341,7 @@ class Rect:
         return self._w, self._h
 
     @size.setter
-    def size(self, value: tuple[float, float]):
+    def size(self, value: Tuple[float]):
         self._w = value[0]
         self._h = value[1]
 

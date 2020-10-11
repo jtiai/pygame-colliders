@@ -1,4 +1,4 @@
-from typing import Union
+from typing import Union, Tuple
 
 from .rect import Rect
 
@@ -122,7 +122,7 @@ class Collider:
         self._move(0.0, value - self._rect.bottom)
 
     @property
-    def topleft(self) -> tuple[float, float]:
+    def topleft(self) -> Tuple[float]:
         """
         Top left coordinate of bounding box.
 
@@ -133,11 +133,11 @@ class Collider:
         return self._rect.topleft
 
     @topleft.setter
-    def topleft(self,  value: tuple[float, float]):
+    def topleft(self,  value: Tuple[float]):
         self._move(value[0] - self._rect.x, value[1] - self._rect.y)
 
     @property
-    def topright(self) -> tuple[float, float]:
+    def topright(self) -> Tuple[float]:
         """
         Top right coordinate of bounding box.
 
@@ -148,11 +148,11 @@ class Collider:
         return self._rect.topright
 
     @topright.setter
-    def topright(self, value: tuple[float, float]):
+    def topright(self, value: Tuple[float]):
         self._move(value[0] - self._rect.right, value[1] - self._rect.y)
 
     @property
-    def bottomleft(self) -> tuple[float, float]:
+    def bottomleft(self) -> Tuple[float]:
         """
         Bottom left coordinate of bounding box.
 
@@ -163,11 +163,11 @@ class Collider:
         return self._rect.bottomleft
 
     @bottomleft.setter
-    def bottomleft(self, value: tuple[float, float]):
+    def bottomleft(self, value: Tuple[float]):
         self._move(value[0] - self._rect.x, value[1] - self._rect.bottom)
 
     @property
-    def bottomright(self) -> tuple[float, float]:
+    def bottomright(self) -> Tuple[float]:
         """
         Bottom right coordinate of bounding box.
 
@@ -178,7 +178,7 @@ class Collider:
         return self._rect.bottomright
 
     @bottomright.setter
-    def bottomright(self, value: tuple[float, float]):
+    def bottomright(self, value: Tuple[float]):
         self._move(value[0] - self._rect.right, value[1] - self._rect.bottom)
 
     @property
@@ -212,7 +212,7 @@ class Collider:
         self._move(0.0, value - self.centery)
 
     @property
-    def center(self) -> tuple[float, float]:
+    def center(self) -> Tuple[float]:
         """
         Center coordinate of bounding box.
 
@@ -223,11 +223,11 @@ class Collider:
         return self._rect.center
 
     @center.setter
-    def center(self, value: tuple[float, float]):
+    def center(self, value: Tuple[float]):
         self._move(value[0] - self._rect.centerx, value[1] - self._rect.centery)
 
     @property
-    def midtop(self) -> tuple[float, float]:
+    def midtop(self) -> Tuple[float]:
         """
         Center top coordinate of bounding box.
 
@@ -238,11 +238,11 @@ class Collider:
         return self._rect.midtop
 
     @midtop.setter
-    def midtop(self, value: tuple[float, float]):
+    def midtop(self, value: Tuple[float]):
         self._move(value[0] - self._rect.centerx, value[1] - self._rect.y)
 
     @property
-    def midright(self) -> tuple[float, float]:
+    def midright(self) -> Tuple[float]:
         """
         Right center coordinate of bounding box.
 
@@ -253,11 +253,11 @@ class Collider:
         return self._rect.midright
 
     @midright.setter
-    def midright(self, value: tuple[float, float]):
+    def midright(self, value: Tuple[float]):
         self._move(value[0] - self.right, value[1] - self.centery)
 
     @property
-    def midbottom(self) -> tuple[float, float]:
+    def midbottom(self) -> Tuple[float]:
         """
         Center bottom coordinate of bounding box.
 
@@ -268,11 +268,11 @@ class Collider:
         return self._rect.midbottom
 
     @midbottom.setter
-    def midbottom(self, value: tuple[float, float]):
+    def midbottom(self, value: Tuple[float]):
         self._move(value[0] - self._rect.centerx, value[1] - self._rect.bottom)
 
     @property
-    def midleft(self) -> tuple[float, float]:
+    def midleft(self) -> Tuple[float]:
         """
         Left center coordinate of bounding box.
 
@@ -283,11 +283,11 @@ class Collider:
         return self._rect.midleft
 
     @midleft.setter
-    def midleft(self, value: tuple[float, float]):
+    def midleft(self, value: Tuple[float]):
         self._move(value[0] - self._rect.left, value[1] - self._rect.centery)
 
     @property
-    def size(self) -> tuple[float, float]:
+    def size(self) -> Tuple[float]:
         """
         Size of bounding box.
 

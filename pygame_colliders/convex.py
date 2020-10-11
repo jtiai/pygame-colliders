@@ -1,5 +1,5 @@
 import math
-from typing import List
+from typing import List, Tuple
 
 from .base import Collider
 from .vector import Vector2
@@ -18,7 +18,7 @@ class ConvexCollider(Collider):
         collider = ConvexCollider(collider_points)
 
     """
-    def __init__(self, points: List[tuple[float, float]]):
+    def __init__(self, points: List[Tuple[float]]):
         self.points: List[List[float]] = [[x, y] for x, y in points]  # Must be mutable
         self._vertices: List[Vector2] = []
         self._edges: List[Vector2] = []
@@ -120,12 +120,12 @@ class ConvexCollider(Collider):
             (self._rect.left, self._rect.bottom),
         ]
 
-    def point_collide(self, point: tuple[float, float]) -> bool:
+    def point_collide(self, point: Tuple[float]) -> bool:
         """
         Check if point is within collider.
 
         :param point: Point to test
-        :type point: tuple[float/int, float/int]
+        :type point: Tuple[float/int, float/int]
         :return: True if point is collider, False otherwise
         :rtype: bool
         """

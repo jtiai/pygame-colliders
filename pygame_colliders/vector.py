@@ -1,6 +1,5 @@
-from typing import Union, List
+from typing import Union, List, Tuple
 
-from .types import FloatOrInt
 
 class Vector2:
     """
@@ -19,26 +18,26 @@ class Vector2:
     :type x: float, int
     :type y: float, int
     """
-    def __init__(self, x: FloatOrInt, y: FloatOrInt):
+    def __init__(self, x: Union[float, int], y: Union[float, int]):
         self._x = x
         self._y = y
 
     def __add__(self, other: "Vector2") -> "Vector2":
-        x: FloatOrInt = self._x + other._x
-        y: FloatOrInt = self._y + other._y
+        x: Union[float, int] = self._x + other._x
+        y: Union[float, int] = self._y + other._y
         return Vector2(x, y)
 
     def __sub__(self, other: "Vector2") -> "Vector2":
-        x: FloatOrInt = self._x - other._x
-        y: FloatOrInt = self._y - other._y
+        x: Union[float, int] = self._x - other._x
+        y: Union[float, int] = self._y - other._y
         return Vector2(x, y)
 
-    def __mul__(self, other: "Vector2") -> FloatOrInt:
+    def __mul__(self, other: "Vector2") -> Union[float, int]:
         """Returns a dot product"""
         return self._x * other._x + self._y * other._y
 
     @property
-    def x(self) -> FloatOrInt:
+    def x(self) -> Union[float, int]:
         """
         Return x component of the vector.
 
@@ -49,11 +48,11 @@ class Vector2:
         return self._x
 
     @x.setter
-    def x(self, value: FloatOrInt):
+    def x(self, value: Union[float, int]):
         self._x = value
 
     @property
-    def y(self) -> FloatOrInt:
+    def y(self) -> Union[float, int]:
         """
         Return y component of the vector.
 
@@ -64,11 +63,11 @@ class Vector2:
         return self._y
 
     @y.setter
-    def y(self, value: FloatOrInt):
+    def y(self, value: Union[float, int]):
         self._y = value
 
     @property
-    def xy(self) -> tuple[FloatOrInt, FloatOrInt]:
+    def xy(self) -> Tuple[Union[float, int]]:
         """
         Return x and y component of the vector as a tuple.
 
@@ -79,5 +78,5 @@ class Vector2:
         return self._x, self._y
 
     @xy.setter
-    def xy(self, value: Union[List[FloatOrInt], tuple[FloatOrInt, FloatOrInt]]):
+    def xy(self, value: Union[List[Union[float, int]], Tuple[Union[float, int]]]):
         self._x, self._y = value
