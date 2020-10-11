@@ -16,4 +16,9 @@ Installation
 
 .. code-block:: bash
 
-    pip install pygame-collider
+    pip install pygame-colliders
+
+Project
+-------
+
+You can find project at GitHub https://github.com/jtiai/pygame-colliders
