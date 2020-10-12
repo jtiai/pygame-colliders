@@ -15,8 +15,8 @@ Creating a convex collider:
 
 .. code-block:: python
 
-    poly_points = [(3, 3), (5, 3), (5, 4), (4, 4), (4, 5), (5, 5), (5, 6), (3, 6)]
-    collider = ConcaveCollider(poly_points)
+    collider_points = [(13, 10), (13, 3), (6, 3), (6, 10)]
+    collider = ConvexCollider(collider_points)
 
 .. seealso::
     Math Open Reference provides `interactive tool <https://www.mathopenref.com/polygonconvex.html>`_
@@ -35,8 +35,8 @@ Creating a concave collider:
 
 .. code-block:: python
 
-    poly_points = [(3, 3), (5, 3), (5, 4), (4, 4), (4, 5), (5, 5), (5, 6), (3, 6)]
-    collider = ConcaveCollider(poly_points)
+    collider_points = [(3, 3), (5, 3), (5, 4), (4, 4), (4, 5), (5, 5), (5, 6), (3, 6)]
+    collider = ConcaveCollider(collider_points)
 
 The code above creates C-shaped collider.
 
@@ -51,6 +51,12 @@ Using the colliders is easy. Just create a collider like instructed above and
 then test if two colliders do collide against each other:
 
 .. code-block:: python
+
+    collider_a_points = [(13, 10), (13, 3), (6, 3), (6, 10)]
+    collider_a = ConvexCollider(collider_points)
+
+    collider_b_points = [(3, 3), (5, 3), (5, 4), (4, 4), (4, 5), (5, 5), (5, 6), (3, 6)]
+    collider_b = ConcaveCollider(collider_points)
 
     if collider_a.collide(collider_b):
         print("Collision detected")

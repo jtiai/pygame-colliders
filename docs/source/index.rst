@@ -14,9 +14,16 @@ users.
 Installation
 ------------
 
+Pygame colliders can be installed easily with pip.
+
 .. code-block:: bash
 
     pip install pygame-colliders
+
+Usage
+-----
+
+Check :ref:`Colliders` documentation for more details.
 
 Project
 -------
