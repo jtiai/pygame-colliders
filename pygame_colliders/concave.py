@@ -15,9 +15,7 @@ def is_ccw(points: List[List[float]]):
     ) > 0
 
 
-def make_ear(
-    shape: List[List[float]], ear: int
-) -> Tuple[List[float]]:
+def make_ear(shape: List[List[float]], ear: int) -> Tuple[List[float]]:
     l = len(shape)
     return shape[(ear - 1) % l], shape[ear], shape[(ear + 1) % l]
 
@@ -68,9 +66,10 @@ class ConcaveCollider(Collider):
         collider = ConcaveCollider(collider_points)
 
     """
+
     def __init__(self, points: List[Tuple[float]]):
         super().__init__()
-        self.points: List[List[float]] = [[x, y] for x, y in points]  # Must be mutable
+        self.points = [[x, y] for x, y in points]  # Must be mutable
         self._vertices: List[Vector2] = []
         self._colliders: List[ConvexCollider] = []
 

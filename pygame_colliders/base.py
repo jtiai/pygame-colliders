@@ -1,11 +1,19 @@
-from typing import Union, Tuple
+from typing import Union, Tuple, List
 
 from .rect import Rect
+
+try:
+    import pygame
+
+    HAS_PYGAME = True
+except ImportError:
+    HAS_PYGAME = False
 
 
 class Collider:
     def __init__(self):
         self._rect: Union[Rect, None] = None
+        self.points: List[List[Union[float, int]]] = []
 
     def _move(self, dx: float, dy: float):
         self._rect.x += dx
@@ -133,7 +141,7 @@ class Collider:
         return self._rect.topleft
 
     @topleft.setter
-    def topleft(self,  value: Tuple[float]):
+    def topleft(self, value: Tuple[float]):
         self._move(value[0] - self._rect.x, value[1] - self._rect.y)
 
     @property
@@ -315,3 +323,8 @@ class Collider:
         :type: float, int
         """
         return self._rect.height
+
+    if HAS_PYGAME:
+
+        def draw(self, surface, color=(255, 255, 255), width=1):
+            pygame.draw.polygon(surface, color, self.points, width)

@@ -18,6 +18,7 @@ class Vector2:
     :type x: float, int
     :type y: float, int
     """
+
     def __init__(self, x: Union[float, int], y: Union[float, int]):
         self._x = x
         self._y = y

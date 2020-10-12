@@ -14,6 +14,7 @@ class Rect:
     :type w: float, int or None
     :type h: float, int or None
     """
+
     def __init__(
         self,
         x: Union[List[float], float],

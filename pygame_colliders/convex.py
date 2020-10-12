@@ -1,5 +1,5 @@
 import math
-from typing import List, Tuple
+from typing import List, Tuple, Union
 
 from .base import Collider
 from .vector import Vector2
@@ -18,8 +18,10 @@ class ConvexCollider(Collider):
         collider = ConvexCollider(collider_points)
 
     """
-    def __init__(self, points: List[Tuple[float]]):
-        self.points: List[List[float]] = [[x, y] for x, y in points]  # Must be mutable
+
+    def __init__(self, points: List[Tuple[Union[float, int]]]):
+        super().__init__()
+        self.points = [[x, y] for x, y in points]  # Must be mutable
         self._vertices: List[Vector2] = []
         self._edges: List[Vector2] = []
         self._normals: List[Vector2] = []
