@@ -11,6 +11,16 @@ def test_no_collision():
     assert poly_a.collide(poly_b) is False
 
 
+def test_collision_2():
+    collider_a_points = [(13, 20), (13, 13), (6, 13), (6, 20)]
+    collider_b_points = [(13, 13), (8, 9), (7, 15)]
+
+    collider_a = ConvexCollider(collider_a_points)
+    collider_b = ConvexCollider(collider_b_points)
+
+    assert collider_a.collide(collider_b) is True
+
+
 def test_collision():
     poly_a = [(11, 10), (11, 3), (4, 3), (4, 10)]
     poly_b = [(13, 13), (8, 9), (7, 15)]

@@ -18,7 +18,20 @@ Changed
 Fixed
 ~~~~~
 
-[0.1.2] - 2020-10-02
+[0.1.4] - 2020-10-13
+--------------------
+
+Added
+~~~~~
+
+``Vector2.normalized()`` and ``Vector2.normalides_ip()`` methods.
+
+Fixed
+~~~~~
+
+In some occasions collisions were detected incrrectly.
+
+[0.1.2] - 2020-10-12
 --------------------
 
 Added

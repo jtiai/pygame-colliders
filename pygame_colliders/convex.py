@@ -5,6 +5,45 @@ from .base import Collider
 from .vector import Vector2
 from .rect import Rect
 
+def _contains(n: float, range_: List[float]) -> bool:
+    """
+    Test that n is within range (ends included). Order of range entries doesn't
+    matter.
+
+    :param n: Value to check.
+    :param range_: Start and end of the range to check.
+    :type n: float
+    :type range_: list(float, float)
+    :return: True if value is inside range, False otherwise
+    :rtype: bool
+    """
+    a, b = range_
+    if b < a:
+        a, b = b, a
+    return (n >= a) and (n <= b)
+
+
+def _overlap(a: List[float], b: List[float]) -> bool:
+    """
+    Check if ends of ranges a and b do overlap.
+
+    :param a: First range to check.
+    :param b: Second range to check.
+    :type a: list(float, float)
+    :type b: list(float, float)
+    :return: True if ranges do overlap, False otherwise
+    :rtype: bool
+    """
+    if _contains(a[0], b):
+        return True
+    if _contains(a[1], b):
+        return True
+    if _contains(b[0], a):
+        return True
+    if _contains(b[1], a):
+        return True
+    return False
+
 
 class ConvexCollider(Collider):
     """
@@ -43,6 +82,7 @@ class ConvexCollider(Collider):
         for vec_b in self._vertices[1:]:
             self._edges.append(vec_b - vec_a)
             vec_a = vec_b
+        self._edges.append(vec_a - self._vertices[0])
 
     def _setup_normals(self):
         self._normals = [Vector2(-e.y, e.x) for e in self._edges]
@@ -93,24 +133,14 @@ class ConvexCollider(Collider):
             # Check collision other way around
             return other.collide(self)
 
-        normal_stack = self._vertices[:] + other._vertices[:]
-        for normal in normal_stack:
-            a_min = math.inf
-            a_max = -math.inf
-            b_min = math.inf
-            b_max = -math.inf
-            for v in self._vertices:
-                dot = normal * v
-                a_min = min(a_min, dot)
-                a_max = max(a_max, dot)
-            for v in other._vertices:
-                dot = normal * v
-                b_min = min(b_min, dot)
-                b_max = max(b_max, dot)
-            # Chained comparison due Cython
-            if (b_min < a_min < b_max) or (a_min < b_min < a_max):
-                continue
-            else:
+        normal_stack = self._normals[:] + other._normals[:]
+        for i, normal in enumerate(normal_stack, 1):
+            a_projections = [normal * v for v in self._vertices]
+            a_range = [min(a_projections), max(a_projections)]
+            b_projections = [normal * v for v in other._vertices]
+            b_range = [min(b_projections), max(b_projections)]
+
+            if not _overlap(a_range, b_range):
                 return False
         return True
 

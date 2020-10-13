@@ -1,3 +1,4 @@
+from math import sqrt
 from typing import Union, List, Tuple
 
 
@@ -81,3 +82,31 @@ class Vector2:
     @xy.setter
     def xy(self, value: Union[List[Union[float, int]], Tuple[Union[float, int]]]):
         self._x, self._y = value
+
+    def normalize(self) -> "Vector2":
+        """
+        Normalizes vector (makes it as a unit vector)
+        :return: Normalized vector
+        :rtype: Vector2
+        """
+        norm = sqrt(self._x ** 2 + self._y ** 2)
+        return Vector2(self._x / norm, self._y / norm)
+
+    def normalize_ip(self) -> "Vector2":
+        """
+        Normalizes vector (makes it as a unit vector) in-place modifying
+        this vector itself.
+
+        :return: self
+        :rtype: Vector2
+        """
+        norm = sqrt(self._x ** 2 + self._y ** 2)
+        self._x /= norm
+        self._y /= norm
+        return self
+
+    def __repr__(self):
+        return f"Vector2<{self._x}, {self._y}>"
+
+    def __str__(self):
+        return f"Vector2({self._x}, {self._y})"
