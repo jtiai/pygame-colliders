@@ -129,6 +129,9 @@ class ConvexCollider(Collider):
         # a = self, b = other
         from .concave import ConcaveCollider  # Late import due cyclic
 
+        if not self._rect.collide_rect(other._rect):
+            return False  # Bounding boxes don't collide
+
         if isinstance(other, ConcaveCollider):
             # Check collision other way around
             return other.collide(self)

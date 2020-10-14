@@ -1,4 +1,4 @@
-VERSION = (0, 1, 3)
+VERSION = (0, 1, 3, "dev1")
 __version__ = ".".join([str(x) for x in VERSION])
 
 from .concave import ConcaveCollider

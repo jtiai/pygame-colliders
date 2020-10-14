@@ -375,3 +375,23 @@ class Rect:
     @height.setter
     def height(self, value: float):
         self._h = value
+
+    def collide_rect(self, other: "Rect") -> bool:
+        """
+        Check if current rect collides with other rect
+        :param other: Other rect to test
+        :type other: Rect
+        :return: True if collides, False otherwise
+        :rtype: bool
+        """
+        # A.left < B.right and
+        # A.top < A.bottom and
+        # A.right > B.left and
+        # A.bottom > b.top
+
+        return (
+            min(self._x, self._x + self._w) < max(other._x, other._x + other._w)
+            and min(self._y, self._y + self._h) < max(other._y, other._y + other._h)
+            and max(self._x, self._x + self._w) > min(other._x, other._x + other._w)
+            and max(self._y, self._y + self._h) > min(other._y, other._y + other._h)
+        )

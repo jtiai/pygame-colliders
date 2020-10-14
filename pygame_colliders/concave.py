@@ -171,6 +171,8 @@ class ConcaveCollider(Collider):
         :return: True if collision happens, False otherwise
         :rtype: bool
         """
+        if not self._rect.collide_rect(other._rect):
+            return False  # Bounding boxes don't collide
         # Concave to concave collision
         if isinstance(other, ConcaveCollider):
             for collider in self._colliders:
