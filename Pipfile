@@ -16,6 +16,7 @@ wheel = "*"
 twine = "*"
 cloud-sptheme = "*"
 sphinxcontrib-fulltoc = "*"
+pep517 = "*"
 
 [packages]
 pygame-colliders = {editable = true, path = "."}
