@@ -3,8 +3,32 @@ name: Publish Python 🐍 distributions 📦 to PyPI and TestPyPI
 on: push
 
 jobs:
+  test-n-lint:
+    name: Test and lint  Python 🐍 distributions
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.7, 3.8, 3.9]
+    steps:
+    - uses: actions/checkout@master
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        python -m pip install pipenv
+        pipenv install --dev
+        flake8 . --select=E9,F63,F7,F82
+        flake8 . --exit-zero
+    - name: Test with pytest
+      run: |
+        pytest
+
   build-n-publish:
     name: Build and publish Python 🐍 distributions 📦 to PyPI and TestPyPI
+    needs: test-n-lint
     runs-on: ubuntu-18.04
     steps:
     - uses: actions/checkout@master

@@ -56,4 +56,3 @@ def test_set_center():
 
     assert r.x == 37
     assert r.y == 4
-

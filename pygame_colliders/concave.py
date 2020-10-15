@@ -1,4 +1,4 @@
-from typing import List, Tuple
+from typing import List, Tuple, Any
 
 from .base import Collider
 from .vector import Vector2
@@ -16,8 +16,8 @@ def is_ccw(points: List[List[float]]):
 
 
 def make_ear(shape: List[List[float]], ear: int) -> Tuple[List[float]]:
-    l = len(shape)
-    return shape[(ear - 1) % l], shape[ear], shape[(ear + 1) % l]
+    length = len(shape)
+    return shape[(ear - 1) % length], shape[ear], shape[(ear + 1) % length]
 
 
 def compf(a: float, b: float, epsilon: float = 0.00001) -> bool:
@@ -67,8 +67,8 @@ class ConcaveCollider(Collider):
 
     """
 
-    def __init__(self, points: List[Tuple[float]]):
-        super().__init__()
+    def __init__(self, points: List[Tuple[float]], data: Any = None):
+        super().__init__(data=data)
         self.points = [[x, y] for x, y in points]  # Must be mutable
         self._vertices: List[Vector2] = []
         self._colliders: List[ConvexCollider] = []
@@ -80,14 +80,7 @@ class ConcaveCollider(Collider):
         triangles = []
 
         shape = self.points[:]
-        # Use orientation of the top-left-most vertex.
-        left = shape[0]
-        index = 0
-        for x in range(len(shape)):
-            v = shape[x]
-            if v[0] < left[0] or (v[0] == left[0] and v[1] < left[1]):
-                left = v
-                index = x
+        index = self._get_top_left_vertex(shape)
 
         o = is_ccw(make_ear(shape, index))
 
@@ -103,37 +96,13 @@ class ConcaveCollider(Collider):
                 # Create a triangle from vertex to adjacent vertices.
                 tri = make_ear(shape, i)
 
-                prev = tri[0]
-                curr = tri[1]
-                next = tri[2]
-
                 # If polygon's orientation doesn't match that of the triangle,
                 # it's definitely a reflex and not an ear.
                 if is_ccw(tri) != o:
                     reflex.append(i)
                     continue
 
-                # Test reflex vertices first.
-                for x in reflex:
-                    # If we are testing ourselves, skip.
-                    if shape[x] in tri:
-                        continue
-
-                    # If any v in triangle, not ear.
-                    elif in_tri(shape[x], tri):
-                        break
-
-                else:
-                    # No reflexes, so we test all past current vertex.
-                    for x in range(i + 2, len(shape)):
-                        if shape[x] in tri:
-                            continue
-                        elif in_tri(shape[x], tri):
-                            break
-
-                    # No vertices in the triangle, we are an ear.
-                    else:
-                        eartip = i
+                eartip = self._find_ear(eartip, i, reflex, shape, tri)
 
             if eartip == -1:
                 break
@@ -145,6 +114,41 @@ class ConcaveCollider(Collider):
 
         self._setup_vertices()
         self._setup_rect()
+
+    def _find_ear(self, eartip, i, reflex, shape, tri):
+        # Test reflex vertices first.
+        for x in reflex:
+            # If we are testing ourselves, skip.
+            if shape[x] in tri:
+                continue
+
+            # If any v in triangle, not ear.
+            elif in_tri(shape[x], tri):
+                break
+
+        else:
+            # No reflexes, so we test all past current vertex.
+            for x in range(i + 2, len(shape)):
+                if shape[x] in tri:
+                    continue
+                elif in_tri(shape[x], tri):
+                    break
+
+            # No vertices in the triangle, we are an ear.
+            else:
+                eartip = i
+        return eartip
+
+    def _get_top_left_vertex(self, shape):
+        # Use orientation of the top-left-most vertex.
+        left = shape[0]
+        index = 0
+        for x in range(len(shape)):
+            v = shape[x]
+            if v[0] < left[0] or (v[0] == left[0] and v[1] < left[1]):
+                left = v
+                index = x
+        return index
 
     def _setup_vertices(self):
         self._vertices = [Vector2(*p) for p in self.points]

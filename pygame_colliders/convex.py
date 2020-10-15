@@ -1,9 +1,9 @@
-import math
-from typing import List, Tuple, Union
+from typing import List, Tuple, Union, Any
 
 from .base import Collider
 from .vector import Vector2
 from .rect import Rect
+
 
 def _contains(n: float, range_: List[float]) -> bool:
     """
@@ -58,8 +58,8 @@ class ConvexCollider(Collider):
 
     """
 
-    def __init__(self, points: List[Tuple[Union[float, int]]]):
-        super().__init__()
+    def __init__(self, points: List[Tuple[Union[float, int]]], data: Any = None):
+        super().__init__(data=data)
         self.points = [[x, y] for x, y in points]  # Must be mutable
         self._vertices: List[Vector2] = []
         self._edges: List[Vector2] = []

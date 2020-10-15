@@ -1,4 +1,4 @@
-from typing import Union, Tuple, List
+from typing import Union, Tuple, List, Any
 
 from .rect import Rect
 
@@ -11,13 +11,22 @@ except ImportError:
 
 
 class Collider:
-    def __init__(self):
+    def __init__(self, data: Any = None):
         self._rect: Union[Rect, None] = None
         self.points: List[List[Union[float, int]]] = []
+        self._data = data
 
     def _move(self, dx: float, dy: float):
         self._rect.x += dx
         self._rect.y += dy
+
+    @property
+    def data(self) -> Any:
+        return self._data
+
+    @data.setter
+    def data(self, value: Any):
+        self._data = value
 
     @property
     def x(self) -> float:
