@@ -29,6 +29,7 @@ jobs:
           poetry run pytest
 
   trigger_publish:
+    name: Trigger publish
     runs-on: ubuntu-latest
     needs: [test-n-lint]
     steps:
