@@ -1,6 +1,13 @@
 Pygame Colliders
 ================
 
+.. image:: https://readthedocs.org/projects/pygame-colliders/badge/?version=latest
+    :target: https://pygame-colliders.readthedocs.io/en/latest/?badge=latest
+    :alt: Documentation Status
+
+.. image:: https://github.com/jtiai/pygame-colliders/workflows/Test%20and%20lint/badge.svg
+    :alt: Test and lint
+
 Pygame colliders will enhance your game or application to have more complex
 colliding system beyond standard ``Rect`` colliders in Pygame.
 
