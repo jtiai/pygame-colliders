@@ -7,12 +7,11 @@ on:
 jobs:
   build-n-publish:
     name: Build and publish to PyPI and TestPyPI
-    needs: test-n-lint
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@master
-          with:
-            ref: ${{ github.event.client_payload.sha }}
+        with:
+          ref: ${{ github.event.client_payload.sha }}
 
       - name: Set up Python 3.7
         uses: actions/setup-python@v2
