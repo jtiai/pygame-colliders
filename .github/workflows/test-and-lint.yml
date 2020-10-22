@@ -27,8 +27,11 @@ jobs:
       - name: Test with pytest
         run: |
           poetry run pytest
-      - name: Trigger next workflow
-        if: success()
+
+  trigger_publish:
+    steps:
+      - name: Trigger publish
+        needs: [test-n-lint]
         uses: peter-evans/repository-dispatch@v1
         with:
           token: ${{ secrets.REPO_GHA_PAT }}
