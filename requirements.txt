@@ -1,4 +1,4 @@
 sphinx
 sphinxcontrib-fulltoc
 cloud_sptheme
-importlib_metadata ; python_version < '2.7'
+importlib_metadata ; python_version < '3.8'
