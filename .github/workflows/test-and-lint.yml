@@ -29,9 +29,10 @@ jobs:
           poetry run pytest
 
   trigger_publish:
+    runs-on: ubuntu-latest
+    needs: [test-n-lint]
     steps:
       - name: Trigger publish
-        needs: [test-n-lint]
         uses: peter-evans/repository-dispatch@v1
         with:
           token: ${{ secrets.REPO_GHA_PAT }}
