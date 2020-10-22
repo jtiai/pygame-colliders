@@ -1,6 +1,7 @@
 from .concave import ConcaveCollider
 from .convex import ConvexCollider
 from .rect import Rect
+from .utils import create_collider
 from .vector import Vector2
 
 try:

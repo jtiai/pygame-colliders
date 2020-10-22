@@ -15,10 +15,27 @@ Added
 Changed
 ~~~~~~~
 
+New ``data`` parameter to colliders making possible to attach arbitrary
+data
+
 Fixed
 ~~~~~
 
-[0.1.4] - 2020-10-13
+[0.1.4] - 2020-10-22
+-------------------------
+
+Added
+~~~~~
+
+New ``create_collider`` method to simplify collider selection.
+
+Changed
+~~~~~~~
+
+Fixed
+~~~~~
+
+[0.1.3] - 2020-10-13
 --------------------
 
 Added
