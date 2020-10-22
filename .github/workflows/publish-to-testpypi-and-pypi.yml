@@ -1,7 +1,8 @@
-name: Publish packages
+name: Build and publish packages
 
 on: push
 
+jobs:
   build-n-publish:
     name: Build and publish to PyPI and TestPyPI
     needs: test-n-lint

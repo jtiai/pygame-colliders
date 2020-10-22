@@ -1,4 +1,4 @@
-name: Test, lint and publish packages
+name: Test and lint
 
 on: push
 
