@@ -4,7 +4,7 @@ name = "pygame-colliders"
 description = "Polygon collider library for Pygame"
 readme = "README.rst"
 documentation = "https://pygame-colliders.readthedocs.io/"
-version = "0.1.4"
+version = "0.1.5.dev1"
 license = "BSD-3-Clause"
 homepage = "https://github.com/jtiai/pygame-colliders"
 repository = "https://github.com/jtiai/pygame-colliders"
@@ -32,6 +32,9 @@ Sphinx = "^3.2.1"
 sphinx-autobuild = "^2020.9.1"
 cloud_sptheme = "^1.10.1"
 isort = "^5.6.4"
+pylint = "^2.6.0"
+sphinxcontrib-fulltoc = "^1.2.0"
+rstcheck = "^3.3.1"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

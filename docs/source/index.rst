@@ -11,7 +11,7 @@ Even the library is called "Pygame Colliders" library is not bound to Pygame
 and doesn't have Pygame as a requirement.
 
 The implementation itself is made in plain Python and there are plans to
-create more performant solution if there is a need amongst the library
+create a more performant solution if there is a need amongst the library
 users.
 
 Initial performance tests using 60 FPS frame speed consuming roughly half
@@ -35,4 +35,4 @@ Check :ref:`Colliders` documentation for more details.
 Project
 -------
 
-You can find project at GitHub https://github.com/jtiai/pygame-colliders
+You can find the project at GitHub https://github.com/jtiai/pygame-colliders

@@ -144,3 +144,6 @@ debug/
 
 # IDEA
 .idea/
+
+# VSCode
+.vscode/

@@ -112,18 +112,15 @@ html_css_files = [
 
 html_theme_options = {
     "roottarget": "index",
-    "borderless_decor": True,
+    "borderless_decor": False,
     "sidebarwidth": "3in",
     "hyphenation_language": "en",
+    "linkcolor": "light-blue",
 }
 
 html_theme_path = [csp._theme_dir]
 
 html_use_smartypants = True
-
-html_theme_options = {
-    "linkcolor": "light-blue",
-}
 
 # Custom sidebar templates, maps document names to template names.
 html_sidebars = {'**': ['searchbox.html', 'globaltoc.html']}

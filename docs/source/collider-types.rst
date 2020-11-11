@@ -10,8 +10,8 @@ Usage
 
 .. versionchanged:: 0.1.4
 
-Easiest way to create colliders is to import ``create_collider`` function and
-use that to create colliders:
+The easiest way to create colliders is to import ``create_collider`` function
+and use that to create colliders:
 
 .. code-block:: python
 
@@ -23,8 +23,9 @@ use that to create colliders:
     concave_poly_points = [(3, 3), (5, 3), (5, 4), (4, 4), (4, 5), (5, 5), (5, 6), (3, 6)]
     concave_collider = create_collider(collider_points)
 
-Using the colliders is easy. Just create a collider like instructed above and
-then test if two colliders do collide against each other:
+Testing collisions is as simple as creating colliders. Once you do have
+colliders created like instructed on the above then just test if two colliders
+do collide against each other like the following:
 
 .. code-block:: python
 
@@ -36,6 +37,10 @@ then test if two colliders do collide against each other:
 
     if collider_a.collide(collider_b):
         print("Collision detected")
+
+It is possible to create colliders with explicit collider creators but this
+requires known which type collider you do have since spesific creators don't
+check against invalid colliders.
 
 Convex colliders
 ----------------
